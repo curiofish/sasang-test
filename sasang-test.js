@@ -241,11 +241,23 @@ const questions = [
     }
 ];
 
-// 페이지 로드 시 첫 번째 질문 표시
+// 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', () => {
+    // 초기 상태 설정
+    document.getElementById('test-container').style.display = 'none';
+    document.getElementById('result').style.display = 'none';
+});
+
+// 테스트 시작 함수
+function startTest() {
+    currentQuestion = 0;
+    answers = [];
+    document.querySelector('.guide-container').style.display = 'none';
+    document.getElementById('test-container').style.display = 'block';
+    document.getElementById('result').style.display = 'none';
     showQuestion(0);
     updateProgressBar();
-});
+}
 
 // 진행 상태 표시 함수
 function updateProgressBar() {
@@ -378,10 +390,28 @@ function determineConstitution(answers) {
 function goToHome() {
     currentQuestion = 0;
     answers = [];
-    document.getElementById('test-container').style.display = 'block';
+    document.querySelector('.guide-container').style.display = 'block';
+    document.getElementById('test-container').style.display = 'none';
     document.getElementById('result').style.display = 'none';
-    showQuestion(0);
 }
 
 // 다시 테스트하기 버튼 이벤트
-document.getElementById('restart').addEventListener('click', goToHome); 
+document.getElementById('restart').addEventListener('click', goToHome);
+
+// 위로 가기 버튼 기능
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}); 

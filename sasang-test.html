@@ -20,8 +20,65 @@
         <div class="home-button" onclick="goToHome()">
             <i class="fas fa-home"></i> 처음으로
         </div>
+
+        <div class="guide-container">
+            <h2>사상의학 체질 안내</h2>
+            <div class="constitution-types">
+                <div class="constitution-type-card">
+                    <h3>태양인 (太陽人)</h3>
+                    <p>적극적이고 진취적인 성격의 소유자로, 상체가 발달하고 하체가 약한 체형을 가집니다. 리더십이 강하고 의지력이 뛰어나며, 새로운 도전을 즐기는 성향이 있습니다.</p>
+                    <ul>
+                        <li>특징: 상체 발달, 하체 약함</li>
+                        <li>성격: 적극적, 진취적, 리더십 강함</li>
+                        <li>건강 관리: 하체 강화 운동, 충분한 휴식</li>
+                    </ul>
+                </div>
+                <div class="constitution-type-card">
+                    <h3>태음인 (太陰人)</h3>
+                    <p>신중하고 보수적인 성격의 소유자로, 하체가 발달하고 상체가 약한 체형을 가집니다. 안정적인 성향과 꾸준한 성실함이 특징입니다.</p>
+                    <ul>
+                        <li>특징: 하체 발달, 상체 약함</li>
+                        <li>성격: 신중, 보수적, 안정적</li>
+                        <li>건강 관리: 상체 강화 운동, 소화 관리</li>
+                    </ul>
+                </div>
+                <div class="constitution-type-card">
+                    <h3>소양인 (少陽人)</h3>
+                    <p>활발하고 긍정적인 성격의 소유자로, 근골이 발달하고 근육이 단단한 체형을 가집니다. 적응력이 좋고 활동적인 성향이 특징입니다.</p>
+                    <ul>
+                        <li>특징: 근골 발달, 근육 단단함</li>
+                        <li>성격: 활발, 긍정적, 적응력 좋음</li>
+                        <li>건강 관리: 규칙적 운동, 근육 관리</li>
+                    </ul>
+                </div>
+                <div class="constitution-type-card">
+                    <h3>소음인 (少陰人)</h3>
+                    <p>섬세하고 예술적인 성격의 소유자로, 근육이 부드럽고 피부가 연한 체형을 가집니다. 감수성이 풍부하고 창의적인 성향이 특징입니다.</p>
+                    <ul>
+                        <li>특징: 근육 부드러움, 피부 연함</li>
+                        <li>성격: 섬세, 예술적, 감수성 풍부</li>
+                        <li>건강 관리: 따뜻한 환경 유지, 가벼운 운동</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="usage-guide">
+                <h3>사용 방법</h3>
+                <ol>
+                    <li>테스트 시작하기 버튼을 클릭합니다.</li>
+                    <li>각 질문에 대해 가장 잘 맞는 답을 선택합니다.</li>
+                    <li>모든 질문에 답하면 자동으로 결과가 표시됩니다.</li>
+                    <li>결과에서는 체질 특성, 맞춤형 식이요법, 운동 가이드 등을 확인할 수 있습니다.</li>
+                    <li>다시 테스트하기 버튼으로 언제든지 테스트를 다시 시작할 수 있습니다.</li>
+                </ol>
+            </div>
+            
+            <button class="start-test-btn" onclick="startTest()">
+                <i class="fas fa-play"></i> 테스트 시작하기
+            </button>
+        </div>
         
-        <div class="test-container" id="test-container">
+        <div class="test-container" id="test-container" style="display: none;">
             <div class="questions-container">
                 <div class="question" data-type="body" style="display: none;">
                     <h3>1. 당신의 체형은 어떤가요?</h3>
@@ -159,5 +216,8 @@
     </div>
 
     <script src="sasang-test.js"></script>
+    <button id="scroll-to-top" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html> 
