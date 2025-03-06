@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="sasang-style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="sasang-test.js" defer></script>
 </head>
 <body>
     <header>
@@ -24,6 +25,7 @@
 
         <div class="guide-container">
             <h2>사상의학 체질 안내</h2>
+            <p class="guide-description">사상의학은 사람의 체질을 태양인, 태음인, 소양인, 소음인으로 구분하여 각 체질에 맞는 건강 관리 방법을 제시합니다. 이는 조선시대 이제마 선생이 창시한 한의학 이론으로, 체질에 따른 맞춤형 건강 관리의 기초가 됩니다.</p>
             <div class="constitution-types">
                 <div class="constitution-type-card">
                     <h3>태양인 (太陽人)</h3>
@@ -66,17 +68,13 @@
             <div class="usage-guide">
                 <h3>사용 방법</h3>
                 <ol>
-                    <li>테스트 시작하기 버튼을 클릭합니다.</li>
+                    <li>아래 체질 안내를 확인합니다.</li>
                     <li>각 질문에 대해 가장 잘 맞는 답을 선택합니다.</li>
                     <li>모든 질문에 답하면 자동으로 결과가 표시됩니다.</li>
                     <li>결과에서는 체질 특성, 맞춤형 식이요법, 운동 가이드 등을 확인할 수 있습니다.</li>
                     <li>다시 테스트하기 버튼으로 언제든지 테스트를 다시 시작할 수 있습니다.</li>
                 </ol>
             </div>
-            
-            <button class="start-test-btn" onclick="startTest()">
-                <i class="fas fa-play"></i> 테스트 시작하기
-            </button>
         </div>
         
         <div class="test-container" id="test-container" style="display: none;">
@@ -221,7 +219,6 @@
         </div>
     </div>
 
-    <script src="sasang-test.js"></script>
     <button id="scroll-to-top" class="scroll-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
