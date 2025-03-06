@@ -244,8 +244,35 @@ const questions = [
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', () => {
     // 초기 상태 설정
-    document.getElementById('test-container').style.display = 'none';
     document.getElementById('result').style.display = 'none';
+    
+    // 다시 테스트하기 버튼 이벤트 리스너
+    const restartBtn = document.getElementById('restart');
+    if (restartBtn) {
+        restartBtn.addEventListener('click', goToHome);
+    }
+    
+    // 위로 가기 버튼 이벤트 리스너
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // 자동으로 테스트 시작
+    startTest();
 });
 
 // 테스트 시작 함수
@@ -395,31 +422,14 @@ function goToHome() {
     document.getElementById('result').style.display = 'none';
 }
 
-// 다시 테스트하기 버튼 이벤트
-document.getElementById('restart').addEventListener('click', goToHome);
-
-// 위로 가기 버튼 기능
-const scrollToTopBtn = document.getElementById('scroll-to-top');
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('visible');
-    } else {
-        scrollToTopBtn.classList.remove('visible');
-    }
-});
-
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
 // PDF 저장 함수
 function saveToPDF() {
     const element = document.getElementById('result');
     const constitutionType = document.getElementById('constitution-type').textContent;
+    
+    // PDF 저장 버튼 숨기기
+    const savePdfBtn = document.querySelector('.save-pdf-btn');
+    savePdfBtn.style.display = 'none';
     
     const opt = {
         margin: 1,
@@ -441,8 +451,13 @@ function saveToPDF() {
     window.scrollTo(0, 0);
 
     // PDF 생성
-    html2pdf().set(opt).from(element).save().catch(error => {
+    html2pdf().set(opt).from(element).save().then(() => {
+        // PDF 생성 완료 후 저장 버튼 다시 표시
+        savePdfBtn.style.display = 'block';
+    }).catch(error => {
         console.error('PDF 생성 중 오류가 발생했습니다:', error);
         alert('PDF 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        // 에러 발생 시에도 저장 버튼 다시 표시
+        savePdfBtn.style.display = 'block';
     });
 } 
