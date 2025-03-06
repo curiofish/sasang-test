@@ -414,4 +414,35 @@ scrollToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-}); 
+});
+
+// PDF 저장 함수
+function saveToPDF() {
+    const element = document.getElementById('result');
+    const constitutionType = document.getElementById('constitution-type').textContent;
+    
+    const opt = {
+        margin: 1,
+        filename: `사상의학_체질테스트_결과_${constitutionType}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: true
+        },
+        jsPDF: { 
+            unit: 'in', 
+            format: 'a4', 
+            orientation: 'portrait' 
+        }
+    };
+
+    // PDF 생성 전에 스크롤을 맨 위로 이동
+    window.scrollTo(0, 0);
+
+    // PDF 생성
+    html2pdf().set(opt).from(element).save().catch(error => {
+        console.error('PDF 생성 중 오류가 발생했습니다:', error);
+        alert('PDF 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    });
+} 
