@@ -18,7 +18,7 @@
 
 1. 저장소를 클론합니다:
 ```bash
-git clone [repository-url]
+git clone https://github.com/curiofish/sasang-test.git
 ```
 
 2. 프로젝트 디렉토리로 이동합니다:
@@ -30,4 +30,4 @@ cd sasang-test
 
 ## 라이선스
 
-이 프로젝트는 MIT 라이선스를 따릅니다. 
+이 프로젝트는 MIT 라이선스를 따릅니다.
