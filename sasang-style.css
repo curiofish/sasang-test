@@ -491,6 +491,7 @@ header {
     margin-top: 40px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border: 1px solid #e0e0e0;
+    counter-reset: item;
 }
 
 .usage-guide h3 {
@@ -514,6 +515,7 @@ header {
 
 .usage-guide ol {
     padding-left: 20px;
+    counter-reset: item;
 }
 
 .usage-guide li {
@@ -523,11 +525,11 @@ header {
     font-size: 1.1em;
     position: relative;
     padding-left: 25px;
+    counter-increment: item;
 }
 
 .usage-guide li:before {
     content: counter(item);
-    counter-increment: item;
     position: absolute;
     left: 0;
     width: 20px;
@@ -540,10 +542,6 @@ header {
     justify-content: center;
     font-size: 0.9em;
     font-weight: bold;
-}
-
-.usage-guide {
-    counter-reset: item;
 }
 
 .start-test-btn {
