@@ -424,40 +424,31 @@ function goToHome() {
 
 // PDF 저장 함수
 function saveToPDF() {
-    const element = document.getElementById('result');
-    const constitutionType = document.getElementById('constitution-type').textContent;
-    
     // PDF 저장 버튼 숨기기
     const savePdfBtn = document.querySelector('.save-pdf-btn');
     savePdfBtn.style.display = 'none';
     
+    // 다시 테스트하기 버튼 표시
+    const restartBtn = document.querySelector('.restart-btn');
+    restartBtn.style.display = 'flex';
+    
+    const element = document.getElementById('result');
     const opt = {
         margin: 1,
-        filename: `사상의학_체질테스트_결과_${constitutionType}.pdf`,
+        filename: '사상의학_체질_테스트_결과.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2,
-            useCORS: true,
-            logging: true
-        },
-        jsPDF: { 
-            unit: 'in', 
-            format: 'a4', 
-            orientation: 'portrait' 
-        }
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
 
-    // PDF 생성 전에 스크롤을 맨 위로 이동
-    window.scrollTo(0, 0);
-
-    // PDF 생성
     html2pdf().set(opt).from(element).save().then(() => {
-        // PDF 생성 완료 후 저장 버튼 다시 표시
-        savePdfBtn.style.display = 'block';
+        // PDF 생성 완료 후 버튼 상태 복원
+        savePdfBtn.style.display = 'flex';
+        restartBtn.style.display = 'flex';
     }).catch(error => {
-        console.error('PDF 생성 중 오류가 발생했습니다:', error);
-        alert('PDF 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
-        // 에러 발생 시에도 저장 버튼 다시 표시
-        savePdfBtn.style.display = 'block';
+        console.error('PDF 생성 중 오류 발생:', error);
+        // 오류 발생 시에도 버튼 상태 복원
+        savePdfBtn.style.display = 'flex';
+        restartBtn.style.display = 'flex';
     });
 } 
