@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사상의학 체질 테스트 - 맞춤형 건강 관리 시스템</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="sasang-style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="sasang-test.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="title" onclick="goToHome()">사상의학 체질 테스트</h1>
+            <p>나의 체질과 맞춤형 건강 관리 시스템</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="home-button" onclick="goToHome()">
+            <i class="fas fa-home"></i> 처음으로
+        </div>
+
+        <div class="guide-container">
+            <h2>사상의학 체질 안내</h2>
+            <p class="guide-description">사상의학은 사람의 체질을 태양인, 태음인, 소양인, 소음인으로 구분하여 각 체질에 맞는 건강 관리 방법을 제시합니다. 이는 조선시대 이제마 선생이 창시한 한의학 이론으로, 체질에 따른 맞춤형 건강 관리의 기초가 됩니다.</p>
+            <div class="constitution-types">
+                <div class="constitution-type-card">
+                    <h3>태양인 (太陽人)</h3>
+                    <p>적극적이고 진취적인 성격의 소유자로, 상체가 발달하고 하체가 약한 체형을 가집니다. 리더십이 강하고 의지력이 뛰어나며, 새로운 도전을 즐기는 성향이 있습니다.</p>
+                    <ul>
+                        <li>특징: 상체 발달, 하체 약함</li>
+                        <li>성격: 적극적, 진취적, 리더십 강함</li>
+                        <li>건강 관리: 하체 강화 운동, 충분한 휴식</li>
+                    </ul>
+                </div>
+                <div class="constitution-type-card">
+                    <h3>태음인 (太陰人)</h3>
+                    <p>신중하고 보수적인 성격의 소유자로, 하체가 발달하고 상체가 약한 체형을 가집니다. 안정적인 성향과 꾸준한 성실함이 특징입니다.</p>
+                    <ul>
+                        <li>특징: 하체 발달, 상체 약함</li>
+                        <li>성격: 신중, 보수적, 안정적</li>
+                        <li>건강 관리: 상체 강화 운동, 소화 관리</li>
+                    </ul>
+                </div>
+                <div class="constitution-type-card">
+                    <h3>소양인 (少陽人)</h3>
+                    <p>활발하고 긍정적인 성격의 소유자로, 근골이 발달하고 근육이 단단한 체형을 가집니다. 적응력이 좋고 활동적인 성향이 특징입니다.</p>
+                    <ul>
+                        <li>특징: 근골 발달, 근육 단단함</li>
+                        <li>성격: 활발, 긍정적, 적응력 좋음</li>
+                        <li>건강 관리: 규칙적 운동, 근육 관리</li>
+                    </ul>
+                </div>
+                <div class="constitution-type-card">
+                    <h3>소음인 (少陰人)</h3>
+                    <p>섬세하고 예술적인 성격의 소유자로, 근육이 부드럽고 피부가 연한 체형을 가집니다. 감수성이 풍부하고 창의적인 성향이 특징입니다.</p>
+                    <ul>
+                        <li>특징: 근육 부드러움, 피부 연함</li>
+                        <li>성격: 섬세, 예술적, 감수성 풍부</li>
+                        <li>건강 관리: 따뜻한 환경 유지, 가벼운 운동</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="usage-guide">
+                <h3>사용 방법</h3>
+                <ol>
+                    <li>아래 체질 안내를 확인합니다.</li>
+                    <li>각 질문에 대해 가장 잘 맞는 답을 선택합니다.</li>
+                    <li>모든 질문에 답하면 자동으로 결과가 표시됩니다.</li>
+                    <li>결과에서는 체질 특성, 맞춤형 식이요법, 운동 가이드 등을 확인할 수 있습니다.</li>
+                    <li>다시 테스트하기 버튼으로 언제든지 테스트를 다시 시작할 수 있습니다.</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-container" id="test-container" style="display: none;">
+            <div class="questions-container">
+                <div class="question" data-type="body" style="display: none;">
+                    <h3>1. 당신의 체형은 어떤가요?</h3>
+                    <div class="options">
+                        <button class="option-btn" data-value="taeyang">상체가 발달하고 하체가 약한 편이에요.</button>
+                        <button class="option-btn" data-value="taeeum">하체가 발달하고 상체가 약한 편이에요.</button>
+                        <button class="option-btn" data-value="soyang">근골이 발달하고 근육이 단단한 편이에요.</button>
+                        <button class="option-btn" data-value="soeum">근육이 부드럽고 피부가 연한 편이에요.</button>
+                    </div>
+                </div>
+                <div class="question" data-type="personality" style="display: none;">
+                    <h3>2. 당신의 성격은 어떤가요?</h3>
+                    <div class="options">
+                        <button class="option-btn" data-value="taeyang">적극적이고 진취적이며 리더십이 강해요.</button>
+                        <button class="option-btn" data-value="taeeum">신중하고 보수적이며 안정적인 성향이에요.</button>
+                        <button class="option-btn" data-value="soyang">활발하고 긍정적이며 적응력이 좋아요.</button>
+                        <button class="option-btn" data-value="soeum">섬세하고 예술적이며 감수성이 풍부해요.</button>
+                    </div>
+                </div>
+                <div class="question" data-type="health" style="display: none;">
+                    <h3>3. 평소 건강 상태는 어떤가요?</h3>
+                    <div class="options">
+                        <button class="option-btn" data-value="taeyang">과로하면 쉽게 지치고, 상체 통증이 자주 있어요.</button>
+                        <button class="option-btn" data-value="taeeum">소화가 잘 안되고, 하체가 자주 무거워요.</button>
+                        <button class="option-btn" data-value="soyang">활동량이 많아도 잘 견디고, 근육통이 자주 있어요.</button>
+                        <button class="option-btn" data-value="soeum">추위를 잘 타고, 피로를 잘 느끼는 편이에요.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="result-container" id="result" style="display: none;">
+            <h2>당신의 체질은</h2>
+            <div class="constitution-type" id="constitution-type"></div>
+            
+            <div class="type-details">
+                <h4>💪 체질 특성</h4>
+                <p id="constitution-trait"></p>
+                <div class="sasang-details">
+                    <h5>체질 특성 상세</h5>
+                    <p id="sasang-trait-details"></p>
+                    <h5>건강 관리 원칙</h5>
+                    <p id="sasang-health-principles"></p>
+                    <h5>체질별 약점</h5>
+                    <p id="sasang-weaknesses"></p>
+                    <h5>체질별 강점</h5>
+                    <p id="sasang-strengths"></p>
+                </div>
+            </div>
+
+            <div class="type-details">
+                <h4>🍎 맞춤형 식이요법</h4>
+                <div class="diet-details">
+                    <h5>추천 식단</h5>
+                    <p id="recommended-food"></p>
+                    <h5>피해야 할 음식</h5>
+                    <p id="avoid-food"></p>
+                    <h5>피해야 할 음식 상세</h5>
+                    <p id="avoid-food-details"></p>
+                    <h5>계절별 추천 식품</h5>
+                    <p id="seasonal-food"></p>
+                    <h5>식사 시간과 방법</h5>
+                    <p id="meal-timing"></p>
+                </div>
+            </div>
+
+            <div class="type-details">
+                <h4>💊 맞춤형 한의학 치료</h4>
+                <div class="medicine-details">
+                    <h5>추천 한약</h5>
+                    <p id="herbal-medicine"></p>
+                    <h5>약재 특성과 효능</h5>
+                    <p id="medicine-effects"></p>
+                    <h5>복용 시 주의사항</h5>
+                    <p id="medicine-precautions"></p>
+                    <h5>계절별 약재 선택</h5>
+                    <p id="seasonal-medicine"></p>
+                </div>
+            </div>
+
+            <div class="type-details">
+                <h4>🏃‍♂️ 맞춤형 운동 가이드</h4>
+                <div class="exercise-details">
+                    <h5>추천 운동</h5>
+                    <p id="recommended-exercise"></p>
+                    <h5>운동 강도와 시간</h5>
+                    <p id="exercise-intensity"></p>
+                    <h5>계절별 운동 방법</h5>
+                    <p id="seasonal-exercise"></p>
+                    <h5>운동 시 주의사항</h5>
+                    <p id="exercise-precautions"></p>
+                </div>
+            </div>
+
+            <div class="type-details">
+                <h4>🌿 생활 관리 가이드</h4>
+                <div class="lifestyle-details">
+                    <h5>일상생활 주의사항</h5>
+                    <p id="daily-life-tips"></p>
+                    <h5>수면 관리법</h5>
+                    <p id="sleep-management"></p>
+                    <h5>스트레스 관리법</h5>
+                    <p id="stress-management"></p>
+                    <h5>계절별 건강 관리법</h5>
+                    <p id="seasonal-health"></p>
+                </div>
+            </div>
+
+            <div class="type-details">
+                <h4>🎨 맞춤형 취미와 활동</h4>
+                <div class="hobby-details">
+                    <h5>추천 취미</h5>
+                    <p id="recommended-hobbies"></p>
+                    <h5>적합한 직업군</h5>
+                    <p id="suitable-jobs"></p>
+                    <h5>대인관계 스타일</h5>
+                    <p id="relationship-style"></p>
+                </div>
+            </div>
+
+            <div class="type-details">
+                <h4>🌸 정신 건강 관리</h4>
+                <div class="mental-health-details">
+                    <h5>명상/요가 가이드</h5>
+                    <p id="meditation-yoga"></p>
+                    <h5>아로마테라피</h5>
+                    <p id="aromatherapy"></p>
+                    <h5>감정 관리법</h5>
+                    <p id="emotion-management"></p>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button class="restart-btn" id="restart">다시 테스트하기</button>
+                <button class="save-pdf-btn" onclick="saveToPDF()">
+                    <i class="fas fa-file-pdf"></i> PDF로 저장하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scroll-to-top" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>
+</html> 
